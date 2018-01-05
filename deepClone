@@ -1,3 +1,4 @@
+//深复制
 function deepClone (obj) {
   let str
   let newobj = obj.constructor === Array ? [] : {}
