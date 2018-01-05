@@ -1,55 +1,53 @@
 //判断浏览器以及版本号
 function _getExplore() {
-        var ua = navigator.userAgent,
-            m = "match";
-        try {
-            var explore = {
-                'uc': ' ubrowser|ucbrowser|ucweb',
-                'baidu': 'bidubrowser|baiduhd|baidubrowser',
-                'qq': 'qqbrowser|mqqbrowser',
-                '2345': '2345explorer|Mb2345Browser',
-                'weixin': 'micromessenger',
-                'lbbrowser': 'lbbrowser|liebaofast',
-                '360': '360se|360ee|QHBrowser',
-                'firefox': 'firefox|FxiOS',
-                'maxthon': 'maxthon|mxbrowser|MXiOS',
-                'theworld': 'theworld',
-                'sougou': 'metasr|sogoumobilebrowser',
-                'edge': ' edge',
-                'kwe': ' kwe',
-                'sleipnir': 'sleipnir',
-                'xiaomi': 'miuiBrowser',
-                'baiduboxapp': 'baiduboxapp',
-                'opera': 'opr|opios',
-                'snclient-wap': 'SNCLIENT-WAP'
-            };
-            var browser = "unknown";
-            for (var k in explore) {
-                var pa = new RegExp("(?:" + explore[k] + ") ?\\/?(\\d+\\.*\\d*)?", "i");
-                if (pa.test(ua)) {
-                    browser = k + " " + (RegExp.$1 ? RegExp.$1 : "");
-                    break;
-                }
+    var ua = navigator.userAgent,
+        m = "match";
+    try {
+        var explore = {
+            'uc': ' ubrowser|ucbrowser|ucweb',
+            'baidu': 'bidubrowser|baiduhd|baidubrowser',
+            'qq': 'qqbrowser|mqqbrowser',
+            '2345': '2345explorer|Mb2345Browser',
+            'weixin': 'micromessenger',
+            'lbbrowser': 'lbbrowser|liebaofast',
+            '360': '360se|360ee|QHBrowser',
+            'firefox': 'firefox|FxiOS',
+            'maxthon': 'maxthon|mxbrowser|MXiOS',
+            'theworld': 'theworld',
+            'sougou': 'metasr|sogoumobilebrowser',
+            'edge': ' edge',
+            'kwe': ' kwe',
+            'sleipnir': 'sleipnir',
+            'xiaomi': 'miuiBrowser',
+            'baiduboxapp': 'baiduboxapp',
+            'opera': 'opr|opios',
+            'snclient-wap': 'SNCLIENT-WAP'
+        };
+        var browser = "unknown";
+        for (var k in explore) {
+            var pa = new RegExp("(?:" + explore[k] + ") ?\\/?(\\d+\\.*\\d*)?", "i");
+            if (pa.test(ua)) {
+                browser = k + " " + (RegExp.$1 ? RegExp.$1 : "");
+                break;
             }
-            if (browser == "unknown") {
-                var s;
-                if (s = ua[m](/(msie|ie) ([\d.]+)/i)) { //ie
-                    browser = 'msie ' + s[2];
-                }
-                if ((s = ua[m](/(chrome|CriOS)\/([\d.]+)/i))) { //chrome
-                    browser = 'chrome ' + s[2];
-                }
-                if (s = ua[m](/opera.([\d.]+)/i)) { //opera
-                    browser = 'opera ' + s[1];
-                }
-                if (s = ua[m](/version\/([\d.]+).*safari/i)) { //safari
-                    browser = 'safari ' + s[1];
-                }
-            }
-            return browser;
-
-        } catch (e) {
-            return "unknown";
         }
-
+        if (browser == "unknown") {
+            var s;
+            if (s = ua[m](/(msie|ie) ([\d.]+)/i)) { //ie
+                browser = 'msie ' + s[2];
+            }
+            if ((s = ua[m](/(chrome|CriOS)\/([\d.]+)/i))) { //chrome
+                browser = 'chrome ' + s[2];
+            }
+            if (s = ua[m](/opera.([\d.]+)/i)) { //opera
+                browser = 'opera ' + s[1];
+            }
+            if (s = ua[m](/version\/([\d.]+).*safari/i)) { //safari
+                browser = 'safari ' + s[1];
+            }
+        }
+        return browser;
+    } catch (e) {
+        return "unknown";
     }
+}
