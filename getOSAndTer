@@ -1,0 +1,94 @@
+function getOSAndTer() {
+        var ua = navigator.userAgent,
+            pf = navigator.platform,
+            p = "push",
+            m = "match",
+            i = "indexOf",
+            npo = "unknow but like Phone",
+            npa = "unknow but like Tablet",
+            n = "unknown",
+            r;
+        try {
+            var os = []; // 操作系统，终端类型
+            // 判断是否为移动设备，IOS，安卓手机 || 安卓平板，windows 平板，wp 手机
+            if (/AppleWebKit.*Mobile/i.test(ua) || (/Android|SymbianOS|Windows Phone|Tablet PC|NOKIA|Nokia|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|SonyEricsson|SIE-|Amoi|ZTE/i.test(ua))) {
+                // 若是移动终端
+                // 若是iPhone OS
+                if (r = ua[m](/(iPhone|iPod touch|iPad).*(OS [\d_]+)/i)) { // IOS 终端
+                    os[p](r[2]);
+                    os[p](r[1]);
+                }
+                // 若是windows终端
+                else if (r = ua[m](/(Windows Phone( | OS )[\d\.]+).*; ([^;]+)\)$/i)) { // windows
+                    // phone
+                    os[p](r[1]);
+                    os[p](r[3]);
+                } else if (r = ua[m](/(Windows NT [\d\.]+).*(Tablet PC [\d\.]+)/i)) { // Windows
+                    // pad
+                    os[p](r[1]);
+                    os[p](r[2]);
+                } else if (ua[i]("Windows Phone") > -1) {
+                    os[p]("Windows Phone");
+                    os[p](npo);
+                } else if (ua[i]("Windows NT") > -1) {
+                    os[p]("windows NT");
+                    os[p](npa);
+                }
+                // 若是安卓终端
+                else if (r = ua[m](/(Android [\d\.]+);.*? ([^;]*?);? Build\//i)) { // Android																		
+                    os[p](r[1]);
+                    os[p](r[2]);
+                }
+                // 若是安卓终端
+                else if (r = ua[m](/(Android [\d\.]+);[^;]*; ([^\)]*?)\)/i)) { // Android																	
+                    os[p](r[1]);
+                    os[p](r[2]);
+                } else if (ua[i]("Android") > -1 && ua[i]("Mobile") > -1) {
+                    os[p]("Android");
+                    if (ua[i]("Xiaomi") > -1)
+                        os[p]("Xiaomi");
+                    else
+                        os[p](npo);
+                } else if (ua[i]("Andriod") > -1) {
+                    os[p]("Android");
+                    os[p](npa);
+                }
+
+
+                // 若是移动设备中未知终端和OS
+                else {
+                    os[p](n)[p](n);
+                }
+            } else { // PC
+                var isWin = (pf == "Win32") || (pf == "Windows");
+                var isMac = (pf == "Mac68K") || (pf == "MacPPC") || (pf == "Macintosh") || (pf == "MacIntel");
+                if (isMac) os[p]("Mac");
+                var isUnix = (pf == "X11") && !isWin && !isMac;
+                if (isUnix) os[p]("Unix");
+                var isLinux = (pf[i]("Linux") > -1);
+                if (isLinux) os[p]("Linux");
+                if (isWin) { // windows 区分到具体的版本
+                    var isWin2K = ua[i]("Windows NT 5.0") > -1 || ua[i]("Windows 2000") > -1;
+                    if (isWin2K) os[p]("Win2000");
+                    var isWinXP = ua[i]("Windows NT 5.1") > -1 || ua[i]("Windows XP") > -1;
+                    if (isWinXP) os[p]("WinXP");
+                    var isWin2003 = ua[i]("Windows NT 5.2") > -1 || ua[i]("Windows 2003") > -1;
+                    if (isWin2003) os[p]("Win2003");
+                    var isWin2003 = ua[i]("Windows NT 6.0") > -1 || ua[i]("Windows Vista") > -1;
+                    if (isWin2003) os[p]("WinVista");
+                    var isWin2003 = ua[i]("Windows NT 6.1") > -1 || ua[i]("Windows 7") > -1;
+                    if (isWin2003) os[p]("Win7");
+                    var isWin8 = ua[i]("Windows NT 6.2") > -1;
+                    if (isWin8) os[p]("Windows 8");
+                    var isWin8_1 = ua[i]("Windows NT 6.3") > -1;
+                    if (isWin8_1) os[p]("Windows 8.1");
+                }
+                os[p]("PC");
+            }
+            os.length > 2 ? os = os.slice(0, 2) : os.length == 1 ? os[p](n) : os.length == 0 ? os[p](n)[p](n) : os;
+            return os;
+        } catch (e) {
+
+        }
+        return ["unknown", "unknown"];
+    }
