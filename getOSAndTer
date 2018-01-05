@@ -1,3 +1,4 @@
+//获取操作系统
 function getOSAndTer() {
         var ua = navigator.userAgent,
             pf = navigator.platform,
