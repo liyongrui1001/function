@@ -61,7 +61,7 @@ function getOSAndTer() {
                 os[p](n)[p](n);
             }
         } else { // PC
-            var isWin = (pf == "Win32") || (pf == "Windows");
+            var isWin = (pf == "Win32") || (pf == "Win64") || (pf == "Windows");
             var isMac = (pf == "Mac68K") || (pf == "MacPPC") || (pf == "Macintosh") || (pf == "MacIntel");
             if (isMac) os[p]("Mac");
             var isUnix = (pf == "X11") && !isWin && !isMac;
@@ -83,6 +83,9 @@ function getOSAndTer() {
                 if (isWin8) os[p]("Windows 8");
                 var isWin8_1 = ua[i]("Windows NT 6.3") > -1;
                 if (isWin8_1) os[p]("Windows 8.1");
+            }
+            if (os.length == 0) {
+                os[p](n);
             }
             os[p]("PC");
         }
