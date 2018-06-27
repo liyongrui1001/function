@@ -1,0 +1,25 @@
+function getUrlParam(url, param) {
+  var par = "",
+    paramsArr = [];
+  if (!this.IsEmpty(url) && !this.IsEmpty(param)) {
+    if (url.indexOf("?") > -1) {
+      if (url.indexOf("#") > -1) {
+        paramsArr = url.split("?")[1].split("#")[0].split("&");
+      } else {
+        paramsArr = url.split("?")[1].split("&");
+      }
+      for (var i = 0; i < paramsArr.length; i++) {
+        var key = paramsArr[i].split("=")[0];
+        if (key == param) {
+          par = paramsArr[i].split("=")[1];
+          break;
+        }
+      }
+    }
+  }
+  return par;
+}
+function getParam(url, param) {
+  var val = url.match(RegExp("(^|&|\\?|#)(" + param + ")=([^&#]*)(&|$|#)", ""));
+  return val ? val[3] : null;
+}
