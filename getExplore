@@ -6,11 +6,12 @@ function _getExplore() {
         var explore = {
             'uc': ' ubrowser|ucbrowser|ucweb',
             'baidu': 'bidubrowser|baiduhd|baidubrowser',
+            'weixin': 'micromessenger',
+            'qqclient': ' qq\/',
             'qq': 'qqbrowser|mqqbrowser',
             '2345': '2345explorer|Mb2345Browser',
-            'weixin': 'micromessenger',
             'lbbrowser': 'lbbrowser|liebaofast',
-            '360': '360se|360ee|QHBrowser',
+            '360': '360se|360ee|QHBrowser|360Browser|qihoo newssdk',
             'firefox': 'firefox|FxiOS',
             'maxthon': 'maxthon|mxbrowser|MXiOS',
             'theworld': 'theworld',
@@ -19,9 +20,10 @@ function _getExplore() {
             'kwe': ' kwe',
             'sleipnir': 'sleipnir',
             'xiaomi': 'miuiBrowser',
+            'oppo':'OppoBrowser',
+            'vivo':'VivoBrowser',
             'baiduboxapp': 'baiduboxapp',
-            'opera': 'opr|opios',
-            'snclient-wap': 'SNCLIENT-WAP'
+            'opera': 'opr|opios'
         };
         var browser = "unknown";
         for (var k in explore) {
