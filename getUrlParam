@@ -23,3 +23,22 @@ function getParam(url, param) {
   var val = url.match(RegExp("(^|&|\\?|#)(" + param + ")=([^&#]*)(&|$|#)", ""));
   return val ? val[3] : null;
 }
+function getQueryObj(url) {
+    let reg_para = /([^&=]+)=([\w\W]*?)(&|$|#)/g,
+			ret = {},
+			urlParam = "";
+		if(url.indexOf("?") > -1){
+			let reg_url = /^[^\?]+\?([\w\W]+)$/,
+				arr_url = reg_url.exec(url);
+			if (arr_url && arr_url[1]) urlParam = arr_url[1];
+		}else{
+			urlParam = url;
+		}
+    if (urlParam) {
+      let str_para = urlParam, result;
+      while ((result = reg_para.exec(str_para)) != null) {
+        ret[result[1]] = result[2];
+      }
+    }
+    return ret;
+  }
