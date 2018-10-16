@@ -28,9 +28,10 @@ function getQueryObj(url) {
 			ret = {},
 			urlParam = "";
 		if(url.indexOf("?") > -1){
-			let reg_url = /^[^\?]+\?([\w\W]+)$/,
-				arr_url = reg_url.exec(url);
-			if (arr_url && arr_url[1]) urlParam = arr_url[1];
+			//let reg_url = /^[^\?]+\?([\w\W]+)$/,
+			//	arr_url = reg_url.exec(url);
+			//if (arr_url && arr_url[1]) urlParam = arr_url[1];
+			urlParam = url.split("?")[1];
 		}else{
 			urlParam = url;
 		}
